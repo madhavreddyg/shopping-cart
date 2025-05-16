@@ -34,11 +34,11 @@ generateShop();
 
 let increment = (id) => {
   let selectedItem = id;
-  let search = basket.find((x) => x.id === selectedItem.id);
+  let search = basket.find((x) => x.id === selectedItem);
 
   if (search === undefined) {
     basket.push({
-      id: selectedItem.id,
+      id: selectedItem,
       item: 1,
     });
   } else {
@@ -51,7 +51,7 @@ let increment = (id) => {
 };
 let decrement = (id) => {
   let selectedItem = id;
-  let search = basket.find((x) => x.id === selectedItem.id);
+  let search = basket.find((x) => x.id === selectedItem);
 
   if (search === undefined) return;
   else if (search.item === 0) return;
@@ -75,4 +75,4 @@ let calculation = () => {
   cartIcon.innerHTML = basket.map((x) => x.item).reduce((x, y) => x + y, 0);
 };
 
-calculation();cons
+calculation();
