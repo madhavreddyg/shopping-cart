@@ -6,7 +6,8 @@ let generateShop = () => {
   return (shop.innerHTML = shopItemsData
     .map((x) => {
       let { id, name, price, desc, img } = x;
-      let search = basket.find((x) => x.id === id) || [];
+      let search = basket.find((x) => x.id === id) || { item: 0 };
+
       return `
     <div id=product-id-${id} class="item">
         <img width="220" src=${img} alt="">
@@ -34,11 +35,11 @@ generateShop();
 
 let increment = (id) => {
   let selectedItem = id;
-  let search = basket.find((x) => x.id === selectedItem);
+  let search = basket.find((x) => x.id ===selectedItem.id);
 
   if (search === undefined) {
     basket.push({
-      id: selectedItem,
+      id: selectedItem.id,
       item: 1,
     });
   } else {
@@ -51,7 +52,7 @@ let increment = (id) => {
 };
 let decrement = (id) => {
   let selectedItem = id;
-  let search = basket.find((x) => x.id === selectedItem);
+  let search = basket.find((x) => x.id ===selectedItem.id);
 
   if (search === undefined) return;
   else if (search.item === 0) return;
@@ -76,3 +77,7 @@ let calculation = () => {
 };
 
 calculation();
+function openCart() {
+  // Example: show a modal or redirect
+  window.location.href = "cart.html"; // or display a modal
+}
